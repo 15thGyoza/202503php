@@ -1,0 +1,105 @@
+p {
+    color: red !important;
+    color: blue;
+    font-size: 40px;
+}
+
+body {
+    margin: 20px;
+}
+
+.footer {
+    background-color: dimgrey;
+    width: 300px;
+    height: 50px;
+}
+
+.div2 {
+    margin-left: 30px;
+}
+
+.div3 {
+    width: 300px;
+    height: 50px;
+    background-color: darkgreen;
+}
+
+.vid4{
+    width: 500px;
+    background-color: #FFCC00;}
+
+.brother-selector {
+    border: 1px solid red;
+    width: 300px;
+    height: 50px;
+}
+
+#content {
+    background-color: brown;
+    width: 200px;
+    height: 50px;
+    margin-left: 30px;
+}
+
+.header h1 {
+    color: #00FF00;
+}
+
+.header > p {
+    color: #00FFFF;
+}
+
+.div2 + .div3 {
+    margin-left: 100px;
+}
+
+.div5 ~ div {
+    background-color: hotpink;
+    margin-left: 30px;
+}
+
+input[type="text"] {
+    border: 1px solid red;
+}
+
+input[type="email"] {
+    background-color: #00FFFF;
+}
+
+[title] {
+    background-color: #FF3333;
+}
+
+input {
+    width: 500px;
+    height: 40px;
+    text-align: center;
+}
+
+[data-custom="1000"] {
+    background-color: #FFCC00;
+}
+
+.google-link:link {
+    color: #FF0000;
+}
+
+.google-link:visited {
+    color: #00FF00;
+}
+
+.google-link:hover {
+    color: #0000FF;
+}
+
+.google-link:active {
+    color: #FF00FF;
+}
+
+input:hover {
+    background-color: #FFCC00;
+}
+
+input:focus {
+    background-color: #FF00FF;
+}
