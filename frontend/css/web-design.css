@@ -185,9 +185,11 @@ a {
 .aboutus {
     text-align: center;
     width: 200px;
+    height: 70px;
     background-color:white;
     border-radius: 5px;
     color: black;
+    justify-content: flex-start;
 }
 
 .footer {
@@ -198,7 +200,7 @@ a {
     background-color: lightgray;
     display: flex;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
     padding: 10px 20px;
 }
 
