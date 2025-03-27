@@ -103,3 +103,18 @@ switch (inputkey) {
         console.log("已打断")
         break;    
 }
+
+let i = 0;
+do {
+  console.log("当前值为：" + i);
+  i++;
+} while (i < 5);
+
+console.log("循环结束，i的值为：" + i);
+
+let count = 0;
+
+do {
+  console.log("计数：" + count);
+  count++;
+} while (count < 5);

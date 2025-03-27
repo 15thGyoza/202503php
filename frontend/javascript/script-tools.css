@@ -1,0 +1,24 @@
+body {
+    background-color: lightgray;
+    margin: 0;
+}
+
+.nav {
+    width: auto;
+    height: 50px;
+    background-color: rgb(73, 73, 73);
+    display: flex;
+    direction: row;
+    justify-content: space-around;
+    font-size: xx-large;
+    color: antiquewhite;
+}
+
+#car {
+    width: 45px;
+    height: 50px;
+    background-color: rgba(12, 23, 170, 0.671);
+    position: absolute;
+    top: 100px;
+    left: 960px;
+}
