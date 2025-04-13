@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>翻译对比工具</title>
+    <style>
+        body {
+          font-family: Arial;
+          padding: 20px;
+          max-width: 600px;
+          margin: auto;
+        }
+        input, button {
+          font-size: 16px;
+          padding: 10px;
+          margin: 10px 0;
+          width: 100%;
+        }
+        .result {
+          margin-top: 20px;
+          padding: 15px;
+          background-color: #f0f0f0;
+          border-radius: 5px;
+        }
+        .result h3 {
+          margin-bottom: 5px;
+        }
+      </style>
+  </head>
+
+<body>
+  <h2>中英日翻译对比</h2>
+  <input id="textInput" type="text" placeholder="请输入英文或日文单词">
+  <button onclick="translate()">开始翻译</button>
+
+  <div class="result">
+    <h3>Google 翻译：</h3>
+    <p id="googleResult">-</p>
+  </div>
+
+  <div class="result">
+    <h3>百度翻译：</h3>
+    <p id="baiduResult">-</p>
+  </div>
+
+  <script>
+    async function translate() {
+      const text = document.getElementById("textInput").value;
+
+      // Google 翻译 (使用第三方接口举例)
+      const googleResponse = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=auto|zh-CN`);
+      const googleData = await googleResponse.json();
+      document.getElementById("googleResult").innerText = googleData.responseData.translatedText;
+
+      // 百度翻译（需要你自己申请 AppID 和 密钥才可以真正使用）
+      document.getElementById("baiduResult").innerText = "此处需百度翻译 API 接入（需 AppID + 签名）";
+    }
+  </script>
+</body>
+</html>
