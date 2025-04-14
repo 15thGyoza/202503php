@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>全世界旅游游戏</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .game-container {
+            width: 500px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .choices {
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1>全世界旅游游戏</h1>
+        <div id="game-content">
+            <p>选择出发地和目的地：</p>
+            <button onclick="startGame()">开始游戏</button>
+        </div>
+    </div>
+
+    <script>
+        let currentStep = 0;
+        let userData = {};
+
+        function startGame() {
+            currentStep = 1;
+            document.getElementById("game-content").innerHTML = `
+                <p>请选择您的出发地：</p>
+                <button onclick="chooseLocation('北京')">北京</button>
+                <button onclick="chooseLocation('上海')">上海</button>
+            `;
+        }
+
+        function chooseLocation(location) {
+            userData.location = location;
+            currentStep = 2;
+            document.getElementById("game-content").innerHTML = `
+                <p>你选择了出发地：${location}。请选择目的地：</p>
+                <button onclick="chooseDestination('新疆')">新疆</button>
+                <button onclick="chooseDestination('西藏')">西藏</button>
+            `;
+        }
+
+        function chooseDestination(destination) {
+            userData.destination = destination;
+            currentStep = 3;
+            document.getElementById("game-content").innerHTML = `
+                <p>你选择了目的地：${destination}。请选择出行方式：</p>
+                <button onclick="chooseTransport('自行车')">自行车</button>
+                <button onclick="chooseTransport('开车')">开车</button>
+                <button onclick="chooseTransport('火车')">火车</button>
+                <button onclick="chooseTransport('飞机')">飞机</button>
+            `;
+        }
+
+        function chooseTransport(transport) {
+            userData.transport = transport;
+            currentStep = 4;
+            document.getElementById("game-content").innerHTML = `
+                <p>你选择了出行方式：${transport}。</p>
+                <p>旅途开始，旅途中你可能会遇到以下事件：</p>
+                <ul>
+                    <li>沿途可能遇到坏天气</li>
+                    <li>有可能会遇到友好的人</li>
+                    <li>或者遇到一些交通阻碍</li>
+                </ul>
+                <button onclick="endGame()">完成旅程</button>
+            `;
+        }
+
+        function endGame() {
+            document.getElementById("game-content").innerHTML = `
+                <p>你成功到达了目的地！</p>
+                <p>感谢你的参与！</p>
+            `;
+        }
+    </script>
+</body>
+</html>

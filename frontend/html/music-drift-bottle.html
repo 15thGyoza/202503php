@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>人类不需要算法</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom right, #a1c4fd, #c2e9fb);
+      padding: 2rem;
+      text-align: center;
+    }
+    #bottle, #input {
+      background: white;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    textarea, input {
+      width: 100%;
+      padding: 0.8rem;
+      margin-top: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 1rem;
+    }
+    button {
+      margin-top: 1rem;
+      padding: 0.8rem 2rem;
+      background: #4f86f7;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #346cd8;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="bottle">
+    <h2>来自陌生人的一段话：</h2>
+    <p id="message">“也许，你正是另一个人的光。”</p>
+    <audio id="song" controls src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+    <p id="countdown"></p>
+  </div>
+
+  <div id="input" style="display:none;">
+    <h3>现在，轮到你传递了：</h3>
+    <textarea id="newMessage" placeholder="写下一句话..."></textarea>
+    <input type="text" id="newSong" placeholder="输入歌曲名称或链接">
+    <button onclick="submitBottle()">发送漂流瓶</button>
+  </div>
+
+  <script>
+    const song = document.getElementById("song");
+    const countdown = document.getElementById("countdown");
+    let timeLeft = 10;
+
+    const interval = setInterval(() => {
+      if (timeLeft > 0) {
+        countdown.innerText = `请耐心聆听 ${timeLeft} 秒...`;
+        timeLeft--;
+      } else {
+        clearInterval(interval);
+        countdown.innerText = "你可以留下你的音乐与心情了。";
+        document.getElementById("input").style.display = "block";
+      }
+    }, 1000);
+
+    function submitBottle() {
+      const msg = document.getElementById("newMessage").value;
+      const song = document.getElementById("newSong").value;
+      alert("你的漂流瓶已送出！\n\n信息：" + msg + "\n歌曲：" + song);
+      // 可以使用 fetch 发送给后端接口进行保存
+    }
+  </script>
+
+</body>
+</html>
