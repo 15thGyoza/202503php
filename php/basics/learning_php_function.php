@@ -94,7 +94,7 @@ function createUser($username, $email, $isActive = true, $isAdmin = false) {
     echo "----";
 }
 //$name = '巫师学徒';
-//createUser(username: $name, $isActive: true, $isAdmin: true);
+//createUser(username: $name, $email: wow.com, $isActive: true, $isAdmin: true);
 echo "<br>";
 
 function multiply($a, $b) {
@@ -124,4 +124,94 @@ function processData(array $data) : void { // void 表示函数不应该 return 
     // 处理数据...
     // return 123; // 错误！void 函数不能返回值
     // return; // 可以，相当于 return null;
+}
+
+// 变量的作用域
+$userAge = 25; // 全局变量
+function getUserinfo1($userAge): void
+{
+    echo $userAge . '<br>';
+    $username = '巫师学徒';
+}
+getUserinfo1($userAge);
+
+// 静态变量
+function staticVariableExample(): void
+{
+    static $count = 0;
+    $count++;
+    echo "函数被调用了 $count 次<br>";
+}
+
+staticVariableExample(); // 输出: 函数被调用了 1 次
+staticVariableExample(); // 输出: 函数被调用了 2 次
+staticVariableExample(); // 输出: 函数被调用了 3 次
+
+// 可变函数
+function helloWorld(): void
+{
+    echo "Hello, World!<br>";
+}
+
+$helloWorld = 'helloWorld';
+$helloWorld();
+
+// 匿名函数
+$greet = function ($name) {
+    echo "你好, " . $name . "！<br>";
+};
+$greet('巫师学徒');
+
+// 使用 use 捕获外部变量
+$messagePrefix = "重要消息: ";
+$sendMessage = function ($text) use ($messagePrefix) {
+    echo $messagePrefix . $text . "<br>";
+};
+$sendMessage("会议推迟了");
+
+$count = 0;
+$increment = function () use (&$count) {
+    $count++;
+};
+$increment();
+$increment();
+echo "Count is now: " . $count . '<br>';
+
+// 作为回调函数传递给 array_map
+$numbers = [1, 2, 3, 4];
+$squares = array_map(function ($iem) {
+    return $iem * $iem;
+}, $numbers);
+print_r($squares);
+echo "<br>";
+
+// 箭头函数
+$numbers = [1, 2, 3, 4];
+$factor = 3;
+
+// 箭头函数自动捕获 $factor
+$multiplied = array_map(fn($item) => $item * $factor, $numbers);
+
+print_r($multiplied);
+echo "<br>";
+
+// 箭头函数自动捕获 $factor
+$numbers = [1, 2, 3, 4];
+$factor = 3;
+$multiplied = array_map(fn($n) => $n * $factor, $numbers);
+
+print_r($multiplied);
+echo "<br>";
+
+// 递归函数
+
+
+// 斐波拉契数列
+function fib(int $n): int {
+    if ($n === 0) return 0;
+    if ($n === 1) return 1;
+        return fib($n - 1) + fib($n - 2);
+}
+for ($n = 1; $n <= 10; $n++) {
+    echo fib($n);
 }
