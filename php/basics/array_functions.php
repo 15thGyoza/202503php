@@ -238,20 +238,22 @@ echo "<br>";
 $string2 = "The next F1 race will be in {{ city }} on {{ date }} ssas {{ weather }}.";
 $str = explode(" ", $string2);
 printRWithBr($str);
+// 拆分字符串
 
 $replaceItem = ['city' => 'Melbourne', 'date' => '2022-04-08', 'weather' => '晴天'];
 $cityArray = ['city' => $replaceItem['city']];
 $dateArray = ['date' => $replaceItem['date']];
 $weatherArray = ['weather' => $replaceItem['weather']];
+// 拆分原数组，以便后续替换时带入
 
 $removed = array_splice($str, 7, 3, $cityArray);
-printRWithBr($str);
+printRWithBr($str);// 打印第一次替换结果
 
 $removed = array_splice($str, 9, 3, $dateArray);
-printRWithBr($str);
+printRWithBr($str);// 打印第二次替换结果
 
 $removed = array_splice($str, 11, 3, $weatherArray);
-printRWithBr($str);
+printRWithBr($str);// 打印第三次替换结果
 
-$string2 = implode(" ", $str);
-printRWithBr($string2);
+$string2 = implode(" ", $str);// 合并字符串
+printRWithBr($string2);// 打印最终结果
