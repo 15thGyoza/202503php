@@ -236,24 +236,162 @@ echo "<br>";
 
 // 方法二：拆分，替换，合并
 $string2 = "The next F1 race will be in {{ city }} on {{ date }} ssas {{ weather }}.";
-$str = explode(" ", $string2);
+echo "<br>";
+$array_str = explode(" ", $string2);// 拆分字符串
 printRWithBr($str);
-// 拆分字符串
 
 $replaceItem = ['city' => 'Melbourne', 'date' => '2022-04-08', 'weather' => '晴天'];
-$cityArray = ['city' => $replaceItem['city']];
-$dateArray = ['date' => $replaceItem['date']];
-$weatherArray = ['weather' => $replaceItem['weather']];
-// 拆分原数组，以便后续替换时带入
+$cityArray = ['city' => $replaceItem['city']];// 拆分原数组，以便后续替换时带入
+$dateArray = ['date' => $replaceItem['date']];// 拆分原数组，以便后续替换时带入
+$weatherArray = ['weather' => $replaceItem['weather']];// 拆分原数组，以便后续替换时带入
 
-$removed = array_splice($str, 7, 3, $cityArray);
-printRWithBr($str);// 打印第一次替换结果
+print_r($string2);
+$removed = array_splice($array_str, 7, 3, $cityArray);
+printRWithBr($array_str);// 打印第一次替换结果
 
-$removed = array_splice($str, 9, 3, $dateArray);
-printRWithBr($str);// 打印第二次替换结果
+$removed = array_splice($array_str, 9, 3, $dateArray);
+printRWithBr($array_str);// 打印第二次替换结果
 
-$removed = array_splice($str, 11, 3, $weatherArray);
-printRWithBr($str);// 打印第三次替换结果
+$removed = array_splice($array_str, 11, 3, $weatherArray);
+printRWithBr($array_str);// 打印第三次替换结果
 
-$string2 = implode(" ", $str);// 合并字符串
+$string2 = implode(" ", $array_str);// 合并字符串
 printRWithBr($string2);// 打印最终结果
+
+echoHr();
+// 方法三
+// 流程图↓↓↓
+
+// 识别'{{' & '}}'
+// 提取{{}}中的keyword对应数组中的key
+// 用array_key_exists方法，str_ireplace方法替换，strlen方法移动指针
+// 输出结果
+
+
+//$result = [];
+// for($i = 0; $i < count($array_str); $i++) {
+//     if ($skip) {
+//         $skip = false;
+//         continue;
+//     }
+// }
+
+//$colors = ["blue", "green", "blue"];
+//$fixedColors = str_replace("blue", "red", $colors);
+//print_r($fixedColors);
+
+$string3 = "The next F1 race will be in {{ city }} on {{ date }} ssas {{ weather }}.";
+$replaceItem = ['city' => 'Melbourne', 'date' => '2022-04-08', 'weather' => '晴天'];
+
+function replaceString($string3, $replaceItem): array|string
+{
+    $i = 0; // 从位置0开始查找
+    while
+        (($startPos = strpos($string3, '{{', $i)) !== false) {
+        $endPos = strpos($string3, '}}', $startPos);
+        if ($endPos === false) break;
+
+        $space = substr($string3, $startPos, $endPos - $startPos + 2);
+        $key = trim(substr($string3, $startPos, $endPos - $startPos));
+
+        if (array_key_exists($key, $replaceItem)) {
+            $string3 = str_ireplace($space, $replaceItem[$key], $string3);
+            $i = $startPos + strlen($replaceItem[$key]);
+        }else {
+            $i = $endPos + 2;
+        }
+    }
+    return $string3;
+}
+
+echo replaceString($string3, $replaceItem);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+echoHr();
+$numbers = [1, 2, 3, 4, 5, 6];
+$even = array_filter($numbers, fn($n) => $n % 2 == 0);
+printRWithBr($even);
+
+$mixed = [0, 1, false, true, "", "hello", null, []];
+$notEmpty = array_filter($mixed);
+printRWithBr($notEmpty);
+
+$assoc = ['a' => 1, 'b' => 2, 'c' => 3];
+$onlyA = array_filter($assoc, fn($key) => $key === 'a', ARRAY_FILTER_USE_KEY);
+printRWithBr($onlyA);
+
+echoHr();
+$numbers = [1, 2, 3, 4, 5];
+
+// 计算数组元素的和
+$sum = array_reduce($numbers, fn($carry, $item) => $carry + $item, 0);
+echoWithBr("Sum: " . $sum); // 输出: Sum: 15
+
+// 将数组元素连接成字符串
+$string = array_reduce($numbers, fn($carry, $item) => $carry . "-" . $item, "Numbers:");
+echoWithBr("\nString: " . $string);
+
+echoHr();
+$fruits = ['a' => 'apple', 'b' => 'banana'];
+
+// 打印每个元素
+array_walk($fruits, function($value, $key) {
+    echoWithBr($key . " => " . $value . "\n");
+});
+
+// 修改数组元素（注意 &）
+$numbers = [1, 2, 3];
+array_walk($numbers, function(&$value, $key) {
+    $value *= 10;
+});
+printRWithBr($numbers);
+
+echoHr();
+$numbers = [3, 1, 4, 1, 5, 9];
+sort($numbers);
+printRWithBr($numbers);
+rsort($numbers);
+printRWithBr($numbers);
+$scores = ['Alice' => 85, 'Bob' => 92, 'Charlie' => 78];
+asort($scores);
+printRWithBr($scores);
+arsort($scores);
+printRWithBr($scores);
+$files = ['img12.png', 'img10.png', 'img2.png', 'img1.png'];
+natsort($files);
+printRWithBr($files);
+$input = ["a", "b", "a", "c", "b", "b"];
+$unique = array_unique($input);
+printRWithBr($unique);
+
+$array1 = ["a" => "green", "red", "blue", "red"];
+$array2 = ["b" => "green", "yellow", "red"];
+
+$diff = array_diff($array1, $array2);
+printRWithBr($diff);
+
+$intersect = array_intersect($array1, $array2);
+print_r($intersect);
+
+$numbers = [1, 2, 3, 4.5];
+echoWithBr("Sum: " . array_sum($numbers));
+
+$input = ["a" => 1, "b" => 2, "c" => 3];
+$flipped = array_flip($input);
+printRWithBr($flipped);
+printRWithBr(array_flip($scores));
+$numbers = [3, 1, 4, 1, 5, 9];
+printRWithBr(array_reverse($numbers));
