@@ -306,17 +306,22 @@ function replaceString($string3, $replaceItem): array|string
 
 echo replaceString($string3, $replaceItem);
 
+// 方法四
+echoHr();
 
+$template = "The next F1 race will be in {{ city }} on {{ date }} ssas {{ weather }}.";
+$replace = ['city' => 'Melbourne', 'date' => '2022-04-08', 'weather' => '晴天'];
 
+$keys = array_keys($replace);
+$search = array_map(function($key) {
+    return '{{ ' . $key . ' }}';
+}, $keys);
 
+$values = array_values($replace);
 
+$template = str_replace($search, $values, $template);
 
-
-
-
-
-
-
+echo $template;
 
 
 
@@ -395,3 +400,5 @@ printRWithBr($flipped);
 printRWithBr(array_flip($scores));
 $numbers = [3, 1, 4, 1, 5, 9];
 printRWithBr(array_reverse($numbers));
+
+
