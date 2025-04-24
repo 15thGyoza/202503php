@@ -297,3 +297,70 @@ if (json_last_error() !== JSON_ERROR_NONE) {
 } else {
     echo "'null' 字符串成功解码为 PHP NULL。";
 }
+
+// 正则表达式
+echoHr();
+$string = "bdfc123qwer789";
+$preg = '/\w{6}/';
+
+$html = "<b>bold text</b> and <i>italic text</i>";
+
+preg_match('#<b>(.*)</b>#', $html, $matches_greedy);
+printRWithBr($matches_greedy);
+
+echoHr();
+
+preg_match('#<b>(.*?)</b>#', $html, $matches_lazy);
+print_r($matches_lazy);
+
+///cat|dog|fish/  # 匹配 "cat" 或 "dog" 或 "fish"
+///gr(a|e)y/       # 匹配 "gray" 或 "grey" (使用了分组)
+
+echoHr();
+
+$email = "chen.stormstout@example.com";
+
+$pattern = '/^([a-zA-Z0-9.-]+)@([a-zA-Z0-9.-]+)$/i';
+// 使用 preg_match 进行验证和捕获
+if (preg_match($pattern, $email, $matches)) {
+    // 如果 preg_match 返回 1，表示匹配成功
+    echo "有效的 Email 地址。\n";
+    echo "完整匹配: " . htmlspecialchars($matches[0]) . "\n";
+    echo "用户名部分 (捕获组 1): " . htmlspecialchars($matches[1]) . "\n";
+    echo "域名部分 (捕获组 2): " . htmlspecialchars($matches[2]) . "\n";
+} else {
+    // 如果 preg_match 返回 0 或 false
+    echo "无效的 Email 地址格式。\n";
+}
+
+echoHr();
+
+$text = "访问我们的网站 https://www.example.com 或查看 ftp://files.example.org/data.zip";
+
+$pattern = '^\b(https?|ftps?)://[-A-Z0-9+&@#/%?=~|!:,.;]*[-A-Z0-9+&@#/%=~|]^i'; // i 不区分大小写
+
+// 使用 preg_match_all 查找所有匹配项
+$match_count = preg_match_all($pattern, $text, $all_matches, PREG_SET_ORDER); // 使用 PREG_SET_ORDER
+
+if ($match_count > 0) {
+    echo "找到了 " . $match_count . " 个 https://www.google.com/search?q=URL:\n";
+    echo "<ul>";
+    foreach ($all_matches as $match) {
+        $url = htmlspecialchars($match[0]);
+        $protocol = htmlspecialchars($match[1]);
+        echo "<li>协议: {$protocol}, https://www.google.com/search?q=URL: {$url}</li>";
+    }
+    echo "</ul>";
+} else {
+    echo "没有找到 https://www.google.com/search?q=URL。\n";
+}
+
+echoHr();
+
+// 隐藏手机号中间四位
+$phone = "用户手机号: 12345678901";
+$pattern3 = '#(\d{3})\d{4}(\d{4})#';
+$replacement3 = '$1****$2';
+$masked_phone = preg_replace($pattern3, $replacement3, $phone);
+echo "原始: {$phone}\n";
+echo "隐藏后: {$masked_phone}\n";
