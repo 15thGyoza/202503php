@@ -98,6 +98,7 @@ $post_url = "http://localhost/202503php/php/basics/recive_01.php";
 
 // 要发送的数据 (模拟表单字段)
 //$config = include 'admin_info.php';
+//file_get_contents();
 $post_data = [
     'username' => 'root',
     'password' => 'root',
