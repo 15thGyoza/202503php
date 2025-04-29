@@ -57,14 +57,23 @@ class Car
     }
 
     // ... 其他方法 (accelerate, brake, getInfo) ...
-    public function getInfo() {
+    public function getInfo()
+    {
         return $this->maker . " " . $this->model;
     }
+
     public function accelerate($amount)
-    { /* ... */ echo $this->getInfo() . " 加速 " . $amount . "\n"; $this->speed+=$amount;}
+    { /* ... */
+        echo $this->getInfo() . " 加速 " . $amount . "\n";
+        $this->speed += $amount;
+    }
+
     public function brake($amount)
-    { /* ... */ echo $this->getInfo() . " 减速 " . $amount . "\n"; $this->speed-=$amount;
-        if($this->speed<0) $this->speed = 0;}
+    { /* ... */
+        echo $this->getInfo() . " 减速 " . $amount . "\n";
+        $this->speed -= $amount;
+        if ($this->speed < 0) $this->speed = 0;
+    }
 }
 
 class player1 extends user
@@ -73,7 +82,7 @@ class player1 extends user
 
     public static string $species = "Char1";
 
-    public function __construct(string $name, int $age, string $race, string $raceClass, string $hometown =null)
+    public function __construct(string $name, int $age, string $race, string $raceClass, string $hometown = null)
     {
         parent::__construct($name, $age, $race, $raceClass);
 
@@ -107,7 +116,7 @@ class player1 extends user
 
 }
 
-$playerLi = new player1("Li", 22,  'Orc', 'Rouge');
+$playerLi = new player1("Li", 22, 'Orc', 'Rouge');
 $playerLi->spell();
 echo $playerLi->name . "<br>";
 echoWithBr("User`s idNumber: " . $playerLi->getCharHostPrivateProp() . "<br>");
@@ -123,8 +132,8 @@ echoWithBr("这是 playerLi 的角色1: " . $playerLi::getSelfStaticProp());
 
 echoHr();
 
-$player2 = new User("Wang", 26,  'Gnome', 'warlock');
-$player3 = new User("Chen", 25,  'undead', 'mage');
+$player2 = new User("Wang", 26, 'Gnome', 'warlock');
+$player3 = new User("Chen", 25, 'undead', 'mage');
 $player2->login();
 $player3->login();
 echoWithBr("这是被修改之前的类的属性: name = " . $player2->name);
@@ -144,6 +153,6 @@ $Car2 = new car("Honda", "S2000 ap2");
 echoHr();
 
 echoWithBr($Car1->getInfo());
-echoWithBr("我们可以通过在3降2的时候弹离合，来实现" . Car::$runningMethod ."车型的起飘。尽情驯服这头“疯牛”吧！");
+echoWithBr("我们可以通过在3降2的时候弹离合，来实现" . Car::$runningMethod . "车型的起飘。尽情驯服这头“疯牛”吧！");
 
 
