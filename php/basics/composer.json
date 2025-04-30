@@ -1,0 +1,17 @@
+{
+    "name": "basics/lirundian",
+    "autoload": {
+        "psr-4": {
+            "Basics\\Lirundian\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Li Rundian",
+            "email": "lirundian2010@gmail.com"
+        }
+    ],
+    "require": {
+        "alrik11es/cowsayphp": "^1.2"
+    }
+}
