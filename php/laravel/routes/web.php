@@ -1,7 +1,9 @@
 <?php
 
-//use App\Http\Controllers\TestsController;
-//use App\Http\Controllers\TodoController;
+use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\TestsController;
+use App\Http\Controllers\TodoController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\UsersController;
@@ -34,3 +36,16 @@ Route::get('/register', [UsersController::class, 'create'])->name('register');
 Route::post('/register', [UsersController::class, 'store'])->name('register.store');
 // Show the user profile
 Route::get('/users/{id?}', [UsersController::class, 'show'])->name('users.show');
+
+
+
+Route::resource('categories', CategoriesController::class);
+//  GET|HEAD   categories .................... categories.index › CategoriesController@index
+//  POST       categories .................... categories.store › CategoriesController@store
+//  GET|HEAD   categories/create ........... categories.create › CategoriesController@create
+//  GET|HEAD   categories/{category} ........... categories.show › CategoriesController@show
+//  PUT|PATCH  categories/{category} ....... categories.update › CategoriesController@update
+//  DELETE     categories/{category} ..... categories.destroy › CategoriesController@destroy
+//  GET|HEAD   categories/{category}/edit ...... categories.edit › CategoriesController@edit
+
+Route::resource('products', ProductsController::class);
