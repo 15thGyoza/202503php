@@ -13,6 +13,7 @@ class CategoriesSeeder extends Seeder
      */
     public function run(): void
     {
-        Categories::factory()->count(5)->create();
+        // 使用工厂创建 10 个分类
+        Categories::factory()->count(10)->create();
     }
 }

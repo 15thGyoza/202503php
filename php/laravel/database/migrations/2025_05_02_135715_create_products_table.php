@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -13,12 +12,13 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->nullable(false)->comment('名称');
+            $table->decimal('price', 10, 2)->nullable(false)->comment('价格');
             $table->unsignedBigInteger('category_id')->nullable(false)->comment('分类ID');
-            $table->string('name');
-            $table->decimal('price');
             $table->unsignedTinyInteger('stock')->nullable(false)->default(0)->comment('库存');
             $table->unsignedTinyInteger('status')->nullable(false)->default(1)->comment('状态 1:上架 0:下架');
-            $table->timestamps();
+            $table->softDeletes();
+            $table->timestampsTz();
         });
     }
 
@@ -30,3 +30,4 @@ return new class extends Migration
         Schema::dropIfExists('products');
     }
 };
+

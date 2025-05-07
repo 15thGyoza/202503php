@@ -2,15 +2,13 @@
 
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ProductsController;
-use App\Http\Controllers\TestsController;
+use App\Http\Controllers\TestController;
 use App\Http\Controllers\TodoController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
-//Route::get('/welcome', [TestsController::class, 'index'])->name('tests.index');
-//Route::get('/login', [TestsController::class, 'index'])->name('tests.login');
 
 
 
@@ -39,7 +37,7 @@ Route::get('/users/{id?}', [UsersController::class, 'show'])->name('users.show')
 
 
 
-Route::resource('categories', CategoriesController::class);
+Route::resource('/categories', CategoriesController::class);
 //  GET|HEAD   categories .................... categories.index › CategoriesController@index
 //  POST       categories .................... categories.store › CategoriesController@store
 //  GET|HEAD   categories/create ........... categories.create › CategoriesController@create
@@ -48,4 +46,6 @@ Route::resource('categories', CategoriesController::class);
 //  DELETE     categories/{category} ..... categories.destroy › CategoriesController@destroy
 //  GET|HEAD   categories/{category}/edit ...... categories.edit › CategoriesController@edit
 
-Route::resource('products', ProductsController::class);
+Route::resource('/products', ProductsController::class);
+
+Route::get('/test', [\App\Http\Controllers\TestController::class, 'index'])->name('test');
