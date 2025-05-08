@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\TodoController;
 use App\Http\Controllers\IndexController;
@@ -49,3 +52,11 @@ Route::resource('/categories', CategoriesController::class);
 Route::resource('/products', ProductsController::class);
 
 Route::get('/test', [\App\Http\Controllers\TestController::class, 'index'])->name('test');
+
+// 2025/05/08
+// author 资源路由
+Route::resource('authors', AuthorController::class);
+// post 资源路由
+Route::resource('posts', PostController::class);
+// tag 资源路由
+Route::resource('tags', TagController::class);

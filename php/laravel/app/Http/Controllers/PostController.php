@@ -2,22 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Products;
-use Illuminate\Contracts\View\Factory;
+use App\Models\Post;
 use Illuminate\Contracts\View\View;
-use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 
-class ProductsController extends Controller
+
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(): Factory|Application|View
+    public function index(): View
     {
-//      $products = products::all();
-        $products = Products::orderBy('created_at', 'desc')->with('category')->paginate(20);
-        return view('products.index', ['products' => $products]);
+        $posts = Post::with('author')->paginate($this->perPage);
+        return view('posts.index', compact('posts'));
     }
 
     /**
@@ -39,15 +37,15 @@ class ProductsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Products $products)
+    public function show(Post $post): View
     {
-        //
+        return view('posts.show', ['post' => $post]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Products $products)
+    public function edit(Post $post)
     {
         //
     }
@@ -55,7 +53,7 @@ class ProductsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Products $products)
+    public function update(Request $request, Post $post)
     {
         //
     }
@@ -63,7 +61,7 @@ class ProductsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Products $products)
+    public function destroy(Post $post)
     {
         //
     }

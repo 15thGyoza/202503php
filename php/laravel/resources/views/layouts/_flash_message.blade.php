@@ -1,6 +1,6 @@
-@foreach(['success', 'error', 'info', 'warning'] as $type)
+@foreach(['success', 'error', 'info', 'waring'] as $type)
     @php
-        $typeToClass = ['success' => 'green','error' => 'red','info' => 'gray','warning' => 'yellow'];
+        $typeToClass = ['success' => 'green','error' => 'red','info' => 'gray','waring' => 'yellow'];
     @endphp
     @if(session($type))
         <div

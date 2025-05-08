@@ -26,6 +26,13 @@ class DatabaseSeeder extends Seeder
         $this->call([
             CategoriesSeeder::class,
             ProductsSeeder::class,
+
+            // 创建 30 个用户
+            AuthorSeeder::class,
+            // 创建 20 个标签
+            TagSeeder::class,
+            // 创建 50 个帖子
+            PostSeeder::class,
         ]);
     }
 }

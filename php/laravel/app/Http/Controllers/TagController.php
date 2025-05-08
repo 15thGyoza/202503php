@@ -2,22 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Products;
-use Illuminate\Contracts\View\Factory;
+use App\Models\Tag;
 use Illuminate\Contracts\View\View;
-use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 
-class ProductsController extends Controller
+class TagController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(): Factory|Application|View
+    public function index(): View
     {
-//      $products = products::all();
-        $products = Products::orderBy('created_at', 'desc')->with('category')->paginate(20);
-        return view('products.index', ['products' => $products]);
+        $tags = Tag::with('posts')->paginate($this->perPage);
+        return view('tags.index', compact('tags'));
     }
 
     /**
@@ -39,7 +36,7 @@ class ProductsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Products $products)
+    public function show(Tag $tag)
     {
         //
     }
@@ -47,7 +44,7 @@ class ProductsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Products $products)
+    public function edit(Tag $tag)
     {
         //
     }
@@ -55,7 +52,7 @@ class ProductsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Products $products)
+    public function update(Request $request, Tag $tag)
     {
         //
     }
@@ -63,7 +60,7 @@ class ProductsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Products $products)
+    public function destroy(Tag $tag)
     {
         //
     }

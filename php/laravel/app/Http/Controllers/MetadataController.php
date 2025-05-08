@@ -2,22 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Products;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
-use Illuminate\Foundation\Application;
+use App\Models\Metadata;
 use Illuminate\Http\Request;
 
-class ProductsController extends Controller
+class MetadataController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(): Factory|Application|View
+    public function index()
     {
-//      $products = products::all();
-        $products = Products::orderBy('created_at', 'desc')->with('category')->paginate(20);
-        return view('products.index', ['products' => $products]);
+        //
     }
 
     /**
@@ -39,7 +34,7 @@ class ProductsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Products $products)
+    public function show(Metadata $metadata)
     {
         //
     }
@@ -47,7 +42,7 @@ class ProductsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Products $products)
+    public function edit(Metadata $metadata)
     {
         //
     }
@@ -55,7 +50,7 @@ class ProductsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Products $products)
+    public function update(Request $request, Metadata $metadata)
     {
         //
     }
@@ -63,7 +58,7 @@ class ProductsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Products $products)
+    public function destroy(Metadata $metadata)
     {
         //
     }

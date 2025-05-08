@@ -2,10 +2,13 @@
 
 namespace Database\Factories;
 
+use App\Models\Author;
+use App\Models\Post;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\post>
+ * @extends Factory<Post>
  */
 class PostFactory extends Factory
 {
@@ -16,8 +19,13 @@ class PostFactory extends Factory
      */
     public function definition(): array
     {
+        $title = $this->faker->sentence(rand(3, 7));
         return [
-            //
+            'title' => rtrim($title, '.'),
+            'content' => $this->faker->paragraphs(rand(5, 15), true),
+            'author_id' => Author::factory(),
+            'slug' => Str::slug($title) . '-' . uniqid(),
+            'status' => $this->faker->randomElement([0, 1, 2]), // 0:草稿 1:發佈 2:隱藏
         ];
     }
 }
