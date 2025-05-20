@@ -5,20 +5,35 @@ namespace App\Models;
 use Database\Factories\AuthorFactory;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Carbon;
 
 /**
  *
  *
+ * @property int $id
+ * @property string $name 作者
+ * @property string $email 电子邮箱
+ * @property string $bio 简介
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read Collection<int, Post> $posts
+ * @property-read int|null $posts_count
  * @method static AuthorFactory factory($count = null, $state = [])
  * @method static Builder<static>|Author newModelQuery()
  * @method static Builder<static>|Author newQuery()
  * @method static Builder<static>|Author query()
+ * @method static Builder<static>|Author whereBio($value)
+ * @method static Builder<static>|Author whereCreatedAt($value)
+ * @method static Builder<static>|Author whereEmail($value)
+ * @method static Builder<static>|Author whereId($value)
+ * @method static Builder<static>|Author whereName($value)
+ * @method static Builder<static>|Author whereUpdatedAt($value)
  * @mixin Eloquent
  */
-
 class Author extends Model
 {
     /** @use HasFactory<AuthorFactory> */

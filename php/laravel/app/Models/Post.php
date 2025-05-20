@@ -5,20 +5,43 @@ namespace App\Models;
 use Database\Factories\PostFactory;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Carbon;
 
 /**
- * @method static PostFactory factory($count = null, $state = [])
+ *
+ *
+ * @property int $id
+ * @property string $title 标题
+ * @property string $content 内容
+ * @property int $author_id
+ * @property string $slug 网址
+ * @property int $status 状态 0:草稿 1:发布 2:隐藏 / 默认初始为1
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read Author $author
+ * @property-read Metadata|null $metadata
+ * @property-read Collection<int, Tag> $tags
+ * @property-read int|null $tags_count
+ * @method static \Database\Factories\PostFactory factory($count = null, $state = [])
  * @method static Builder<static>|Post newModelQuery()
  * @method static Builder<static>|Post newQuery()
  * @method static Builder<static>|Post query()
+ * @method static Builder<static>|Post whereAuthorId($value)
+ * @method static Builder<static>|Post whereContent($value)
+ * @method static Builder<static>|Post whereCreatedAt($value)
+ * @method static Builder<static>|Post whereId($value)
+ * @method static Builder<static>|Post whereSlug($value)
+ * @method static Builder<static>|Post whereStatus($value)
+ * @method static Builder<static>|Post whereTitle($value)
+ * @method static Builder<static>|Post whereUpdatedAt($value)
  * @mixin Eloquent
  */
-
 class Post extends Model
 {
     /** @use HasFactory<PostFactory> */
